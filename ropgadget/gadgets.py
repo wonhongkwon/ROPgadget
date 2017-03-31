@@ -98,13 +98,13 @@ class Gadgets:
                        ]
             arch_mode = arch_mode + CS_MODE_BIG_ENDIAN
 
-        elif arch == CS_ARCH_SPARC:
-            gadgets = [
-                            [b"\x81\xc3\xe0\x08", 4, 4], # retl
-                            [b"\x81\xc7\xe0\x08", 4, 4], # ret
-                            [b"\x81\xe8\x00\x00", 4, 4]  # restore
-                       ]
-            arch_mode = CS_MODE_BIG_ENDIAN
+#        elif arch == CS_ARCH_SPARC:
+#            gadgets = [
+#                            [b"\x81\xc3\xe0\x08", 4, 4], # retl
+#                            [b"\x81\xc7\xe0\x08", 4, 4], # ret
+#                            [b"\x81\xe8\x00\x00", 4, 4]  # restore
+#                       ]
+#            arch_mode = CS_MODE_BIG_ENDIAN
 
         elif arch == CS_ARCH_ARM:    gadgets = []            # ARM doesn't contains RET instruction set. Only JOP gadgets
         elif arch == CS_ARCH_ARM64:
@@ -149,11 +149,11 @@ class Gadgets:
                                [b"\x08\x00\xe0\x03[\x00-\xff]{4}", 8, 4]  # jr  $ra
                       ]
         elif arch == CS_ARCH_PPC:    gadgets = [] # PPC architecture doesn't contains reg branch instruction
-        elif arch == CS_ARCH_SPARC:
-            gadgets = [
-                               [b"\x81\xc0[\x00\x40\x80\xc0]{1}\x00", 4, 4]  # jmp %g[0-3]
-                      ]
-            arch_mode = CS_MODE_BIG_ENDIAN
+#        elif arch == CS_ARCH_SPARC:
+#            gadgets = [
+#                               [b"\x81\xc0[\x00\x40\x80\xc0]{1}\x00", 4, 4]  # jmp %g[0-3]
+#                      ]
+#            arch_mode = CS_MODE_BIG_ENDIAN
         elif arch == CS_ARCH_ARM64:
             gadgets = [
                                [b"[\x00\x20\x40\x60\x80\xa0\xc0\xe0]{1}[\x00-\x03]{1}[\x1f\x5f]{1}\xd6", 4, 4],  # br reg
@@ -206,7 +206,7 @@ class Gadgets:
                                [b"\x0c\x00\x00\x00", 4, 4] # syscall
                       ]
         elif arch == CS_ARCH_PPC:    gadgets = [] # TODO (sc inst)
-        elif arch == CS_ARCH_SPARC:  gadgets = [] # TODO (ta inst)
+#        elif arch == CS_ARCH_SPARC:  gadgets = [] # TODO (ta inst)
         elif arch == CS_ARCH_ARM64:  gadgets = [] # TODO
         elif arch == CS_ARCH_ARM:
             if self.__options.thumb or self.__options.rawMode == "thumb":
@@ -234,7 +234,7 @@ class Gadgets:
         if   arch == CS_ARCH_X86:    return self.__passCleanX86(gadgets, multibr)
         elif arch == CS_ARCH_MIPS:   return gadgets
         elif arch == CS_ARCH_PPC:    return gadgets
-        elif arch == CS_ARCH_SPARC:  return gadgets
+#        elif arch == CS_ARCH_SPARC:  return gadgets
         elif arch == CS_ARCH_ARM:    return gadgets
         elif arch == CS_ARCH_ARM64:  return gadgets
         else:
